@@ -15,15 +15,7 @@ var gpioModel = Backbone.Model.extend({
 
 var gpioCollection = Backbone.Collection.extend({
 	url : "/gpio",
-	model : gpioModel,
-
-	initialize : function() {
-		console.log("generating collecion");
-	},
-
-	testFunction: function() {
-		console.log("calling testFunction");
-	}
+	model : gpioModel	
 });
 
 var gpioView = Backbone.View.extend({
@@ -50,7 +42,7 @@ var gpioView = Backbone.View.extend({
 		} else {
 			this.model.set({"state": "1"});
 		}
-		console.log(this.getState());
+		
 		this.model.save();
 	},
 
@@ -86,7 +78,6 @@ var Router = Backbone.Router.extend({
 
 	init : function () {
 		var gpioColl = new gpioCollection();
-		gpioColl.testFunction();
 		var colView = new gpiosView({'collection': gpioColl});
 		colView.render();
 	}
