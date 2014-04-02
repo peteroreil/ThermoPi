@@ -5,7 +5,7 @@
 GPIO_VALUE="/home/peter/Desktop/GPIO_Simulator/gpio3/value"
 CRON_LOG="/home/peter/Desktop/GPIO_Simulator/zoneSchedulers.log"
 
-QUERY="mysql --skip-column-names -uroot -pshroot ThermoPi -e 'select POWERED_ON from SCHEDULE_ZONE_THREE where (TIME_RANGE = getTime(now()))and (ZONE_ID = 1);'"
+QUERY="mysql --skip-column-names -uroot -pshroot ThermoPi -e 'select POWERED_ON from SCHEDULE_ZONE_THREE where (TIME_RANGE = getTime(now()))and (ZONE_ID = 3);'"
 
 EXECUTE=$(eval $QUERY);
 
