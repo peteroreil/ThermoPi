@@ -1,0 +1,151 @@
+/*Navigation Styling*/
+ .nav{
+ 	height: 75px;
+ }
+
+ .side-nav {
+	margin-left: -225px;
+	left: 225px;
+	width: 225px;
+	position: fixed;
+	top: 76px;
+	height: 100%;
+	border-radius: 0;
+	border: none;
+	background-color: #003366;
+	overflow-y: auto;
+}
+ 
+ .navbar-inverse  .navbar-brand {
+	color: #fff;	
+}
+
+.navbar-inverse {
+	background-color: #003366;
+	border-color: #003366;
+}
+  
+.side-nav>li>a {
+	width: 225px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .side-nav>li>a:hover,
+.navbar-inverse .side-nav>li>a:focus {
+	background-color: #fff;
+	color: #003366;
+}
+
+.icons {
+	margin-right: 20px;
+	margin-left:20px;
+}
+
+.navbar-right {
+	padding-right:15px;
+}
+
+.navbar-right>li {
+	height:75px;
+	padding-top:12px;
+	padding-right:10px;
+	padding-left:10px;
+}
+
+
+.navbar-right>li:hover {
+	background-color: #336699;
+}
+
+.navbar-brand {
+	margin-top:10px;
+}
+
+.navbar-right>li>a>span {
+	margin-right:10px;
+	margin-left:5px;
+}
+
+.navbar-right>li>a>i {
+	margin-right:5px;
+}
+
+/*End of Navigation Styling*/
+
+/*Start of Page-Container*/
+#container{
+	padding-left:225px;
+}
+
+#page-wrapper {
+  margin-top:75px;
+  width: 100%;
+  padding: 15px 25px;
+  
+}
+
+
+/*End of Page-Container*/
+
+/* Start of Panels*/
+.panel-primary > .panel-heading,
+.panel-primary {
+	border-color:#003366;
+}
+.panel-primary > .panel-heading{
+	background-color: #003366;
+	
+}
+
+
+
+#zone-panel {
+	height:115px;
+}
+
+
+.fa-map-marker {
+	margin-right:15px;
+}
+
+.panel-footer {
+	color:#39b3d7;
+}
+
+.panel-footer> .row> .icon {
+	text-align:right;
+}
+
+.panel-footer> .row> .icon> i:hover {
+	color:#3175b0;
+}
+
+.current-temp {
+	height:180px;
+}
+
+.current-temp-reading{
+	text-align: center;
+	color: #3175b0;
+}
+
+/*End of Panels*/
+
+.climate-buttons>button>i {
+	margin-right:6px;
+}
+
+/*Login Screen Margins*/
+#logo-row {
+	margin-top: 100px;
+}
+
+#login-row {
+	margin-top: 50px;
+	text-align: center;
+}
