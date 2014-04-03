@@ -2,13 +2,15 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/login'
-  ], function($, _, Backbone, LoginView) {
+  'views/login',
+  'views/home'
+  ], function($, _, Backbone, LoginView, HomeView) {
   
  
   var Router = Backbone.Router.extend({
     routes: {
-      '': 'login'
+      '': 'login',
+      'main': 'loggedIn'
     }
   });
   
@@ -21,6 +23,11 @@ define([
         var loginView = new LoginView();
         loginView.render();
       });
+
+    router.on('route:loggedIn', function() {
+        var homepage = new HomeView();
+        homepage.render();
+    });
 
      Backbone.history.start();
   };

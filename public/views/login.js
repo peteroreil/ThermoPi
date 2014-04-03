@@ -7,6 +7,12 @@ define([
 
 	var LoginView = Backbone.View.extend({
 
+		className : 'login',
+		
+		events : {
+		'submit  form' : 'login'
+		},
+
 		initialize: function() {
 			this.template = _.template(loginTemplate);
 			$(this.el).html(this.template);
@@ -14,6 +20,12 @@ define([
 
 		render: function() {
 			$('.container').html(this.el);
+		}, 
+
+		login: function(event) {
+			event.preventDefault();	
+			// authenticate user yada yada	
+			Backbone.history.navigate('#main', true);
 		}
 	});
 

@@ -1,5 +1,7 @@
 
-var GPIO_HOME = "/home/peter/Desktop/GPIO/";
+var gpioConfig = require('../GPIO/config');
+var config = new gpioConfig();
+var GPIO_HOME = config['routeDirectory'];
 var GPIOController = require('../GPIO/GPIOController');
 var gpioController = new GPIOController(GPIO_HOME);
 var filesystem = require('fs');

@@ -1,3 +1,8 @@
+ul
+{
+    list-style-type: none;
+}
+
 /*Navigation Styling*/
  .nav{
  	height: 75px;
@@ -78,7 +83,7 @@
 /*End of Navigation Styling*/
 
 /*Start of Page-Container*/
-#container{
+.container{
 	padding-left:225px;
 }
 
@@ -148,4 +153,16 @@
 #login-row {
 	margin-top: 50px;
 	text-align: center;
+}
+
+.status-list {
+	margin-bottom: 5px;
+}
+
+.status {
+	margin-right: 35px;
+}
+
+.login {
+	margin-left:-225px;
 }

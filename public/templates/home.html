@@ -1,0 +1,90 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<p class="navbar-brand">AutoMate Logo Here</p>
+	</div>
+	<div class="">
+		<ul class="nav navbar-nav side-nav">
+			<li><a href=""><i class="icons fa fa-tachometer fa-fw"></i>Dashboard</a></li>
+			<li class="active"><a href=""><i class="icons fa fa-globe fa-fw"></i> Temperature</a></li>
+			<li><a href=""><i class="icons fa fa-camera fa-fw"></i> Cameras</a></li>
+			<li><a href=""><i class="icons fa fa-power-off  fa-fw"></i> Power</a></li>
+			<li><a href=""><i class="icons fa fa-home fa-fw"></i> Rooms</a></li>
+			<li><a href=""><i class="icons fa fa-lightbulb-o  fa-fw"></i> Lighting</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="">
+				<a href="#" ><i class="fa fa-envelope"></i>Messages <span class="label label-success">7</span><b class="caret"></b></a>    
+			</li>
+			<li class="">
+				<a href="#"><i class="fa fa-bell"></i>Alerts <span class="label label-warning">3</span> <b class="caret"></b></a>
+			</li>
+			<li class="">
+				<a href="#"><i class="fa fa-user"></i>UserName  <b class="caret"></b></a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>Climate Control <small>temperature</small></h1>
+					<ol class="breadcrumb">
+						<li class="active"><i class="fa fa-globe"></i> Temperature</li>
+					</ol>
+				</div>
+				<div class="col-xs-12">
+					<div class="btn-group btn-group-justified">
+						<div class="btn-group climate-buttons">
+							<button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Turn On Zone 1</button>
+						</div>
+						<div class="btn-group climate-buttons">
+							<button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Turn Off Zone 2</button>
+						</div>
+						<div class="btn-group climate-buttons">
+							<button type="button" class="btn btn-danger"><i class="fa fa-plus"></i>Turn off Zone 3</button>
+						</div>
+						<div class="btn-group climate-buttons">
+							<button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Turn On Zone 4</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="panel panel-info">
+				<div id="zone-panel" class="panel-heading">
+					<div class="row">
+						<div class="col-lg-12">
+							<ul>
+								<li class="status-list">
+									<span class="label label-success status">on</span>Zone One 
+								</li>
+								<li class="status-list">
+									<span class="label label-danger status">off</span>Zone Two 
+								</li>
+								<li class="status-list">
+									<span class="label label-danger status">off</span>Zone Three 
+								</li>
+								<li class="status-list">
+									<span class="label label-success status">on</span>Zone Four 
+								</li>
+							</ul>
+						</div>									
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-xs-6">
+							Zone Status
+						</div>
+						<div class="col-xs-6 icon">
+							<i class="fa fa-times"></i>
+						</div>		
+					</div>								
+				</div>
+			</div>
+		</div>
+	</div>
+</div>				

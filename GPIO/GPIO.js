@@ -1,5 +1,7 @@
 //GPIO Object
-var filesystem = require('fs');
+var filesystem = require('fs')
+    gpioConfig = require('./config');
+    config = new gpioConfig();
 
 function GPIO(id, name, direction, value) {
 	
@@ -29,6 +31,6 @@ function GPIO(id, name, direction, value) {
 	};
 }
 
-GPIO.prototype.routeDir = "/home/peter/Desktop/GPIO/";
+GPIO.prototype.routeDir = config['routeDirectory'];
 
 module.exports = GPIO;
