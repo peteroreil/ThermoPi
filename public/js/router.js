@@ -3,8 +3,10 @@ define([
   'underscore',
   'backbone',
   'views/login',
-  'views/home'
-  ], function($, _, Backbone, LoginView, HomeView) {
+  'views/home',
+  'models/mains',
+  'views/mainsView'
+  ], function($, _, Backbone, LoginView, HomeView, MainsModel, MainsView) {
   
  
   var Router = Backbone.Router.extend({
@@ -27,6 +29,9 @@ define([
     router.on('route:loggedIn', function() {
         var homepage = new HomeView();
         homepage.render();
+
+        var mainsPowerModel  = new MainsModel();
+        var mainsPowerView = new MainsView({model : mainsPowerModel});
     });
 
      Backbone.history.start();

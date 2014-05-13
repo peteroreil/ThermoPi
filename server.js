@@ -1,11 +1,11 @@
 var express = require('express'),
  	path = require('path'),
 	http = require('http'),
-	gpio = require('./routes/gpio'),
+	zone = require('./routes/zones'),
     app = express();
 
 
-gpio.resetGPIOs(function(){
+zone.createZoneGPIOs(function(){
 
 	app.configure(function () {	
 	    app.set('port', 8888 );
@@ -14,11 +14,14 @@ gpio.resetGPIOs(function(){
 	    app.use(express.static(path.join(__dirname, 'public')));
 	});
 
-	app.get('/gpio', gpio.findAll);
-	app.get('/gpio/:id', gpio.findById);
-	app.put('/gpio/:id', gpio.setState);
+	app.get('/mains', zone.getMains);
+	app.put('/mains/:id', zone.putZone);
+	app.get('/zone', zone.getAllZones);
+	app.get('/zone/:id', zone.findZoneById);
+	app.put('/zone/:id', zone.putZone);
 
 	http.createServer(app).listen(app.get('port'), function () {
 	    console.log("ThermoPi Server now listening on port " + app.get('port'));
 	});
 });
+

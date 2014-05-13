@@ -26,65 +26,20 @@
 </nav>
 <div id="page-wrapper">
 	<div class="row">
-		<div class="col-lg-8">
-			<div class="row">
-				<div class="col-xs-12">
-					<h1>Climate Control <small>temperature</small></h1>
-					<ol class="breadcrumb">
-						<li class="active"><i class="fa fa-globe"></i> Temperature</li>
-					</ol>
-				</div>
-				<div class="col-xs-12">
-					<div class="btn-group btn-group-justified">
-						<div class="btn-group climate-buttons">
-							<button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Turn On Zone 1</button>
-						</div>
-						<div class="btn-group climate-buttons">
-							<button type="button" class="btn btn-danger"><i class="fa fa-times"></i>Turn Off Zone 2</button>
-						</div>
-						<div class="btn-group climate-buttons">
-							<button type="button" class="btn btn-danger"><i class="fa fa-plus"></i>Turn off Zone 3</button>
-						</div>
-						<div class="btn-group climate-buttons">
-							<button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Turn On Zone 4</button>
-						</div>
-					</div>
-				</div>
+		<div id="main-power" class="col-xs-12"></div>
+	</div>	
+	<div id="tab-row" class="row">
+		<div class="col-xs-12">
+			<ul class="nav nav-tabs" id="myTab">
+				<li id="one" class="active"><a id="one" href="#zoneOne" data-toggle="tab">Zone One</a></li>
+				<li id="two" ><a href="#zoneTwo" data-toggle="tab">Zone Two</a></li>
+				<li id="three"><a href="#zoneThree" data-toggle="tab">Zone Three</a></li>
+			</ul>
+			<div class="tab-content" id="tabDivs">
+				<div class="tab-pane" id="zoneOne">One</div>
+				<div class="tab-pane" id="zoneTwo">Two</div>
+				<div class="tab-pane" id="zoneThree">Three</div>
 			</div>
 		</div>
-		<div class="col-lg-4">
-			<div class="panel panel-info">
-				<div id="zone-panel" class="panel-heading">
-					<div class="row">
-						<div class="col-lg-12">
-							<ul>
-								<li class="status-list">
-									<span class="label label-success status">on</span>Zone One 
-								</li>
-								<li class="status-list">
-									<span class="label label-danger status">off</span>Zone Two 
-								</li>
-								<li class="status-list">
-									<span class="label label-danger status">off</span>Zone Three 
-								</li>
-								<li class="status-list">
-									<span class="label label-success status">on</span>Zone Four 
-								</li>
-							</ul>
-						</div>									
-					</div>
-				</div>
-				<div class="panel-footer">
-					<div class="row">
-						<div class="col-xs-6">
-							Zone Status
-						</div>
-						<div class="col-xs-6 icon">
-							<i class="fa fa-times"></i>
-						</div>		
-					</div>								
-				</div>
-			</div>
-		</div>
-	</div>
-</div>				
+	</div>		
+</div>

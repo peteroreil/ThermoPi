@@ -1,141 +1,142 @@
 var filesystem = require('fs'),
-    sleep = require('sleep');
-    GPIO = require('./GPIO.js');
+    sleep = require('sleep'),
+    GPIO = require('./GPIO.js'),
+    uuid = require('node-uuid'),
+    GPIODbConn = require('./GPIODB.js'),
+    dbConnection = new GPIODbConn();
 
-function GPIOController(routeDirectory) {
+function GPIOController(gpioRootDir) {
 	
-	var routeDir = routeDirectory;
+	var gpioRoot = gpioRootDir;
 	var exportFile = "export";
 	var unexportFile = "unexport";
+	var zoneObjArray = new Array();
 	
 	var writeGPIO = function(gpioNum, fileName, callback) {
-		filesystem.writeFileSync(routeDir + fileName, gpioNum);
+		filesystem.writeFileSync(gpioRoot + fileName, gpioNum);
 		sleep.sleep(2);	
 	
 		if(callback) {
 			callback(gpioNum);
 		}
-	}
+	};
 
 	var getGPIODirection = function(gpioDir) {
-		return filesystem.readFileSync(routeDir + gpioDir + "/direction", "utf8");
+		return filesystem.readFileSync( gpioDir + "/direction", "utf8");
 	};
 
 	var setGPIODirection = function (gpioName, direction) {
 		console.log("setting gpio: " + gpioName + " direction to: " + direction);
-		filesystem.writeFileSync(routeDir + gpioName+"/direction", direction);
+		filesystem.writeFileSync( gpioName+"/direction", direction);
 	};
 
 	var getGPIOValue = function(gpioDir) {
-		return filesystem.readFileSync(routeDir + gpioDir + "/value", "utf8");
+		return filesystem.readFileSync( gpioDir + "/value", "utf8");
 	};	
 
 	var setGPIOValue = function(gpioName, value) {
 		console.log("setting gpio: "+ gpioName + " value to: " + value);
-		filesystem.writeFileSync(routeDir + gpioName + "/value", value);	
+		filesystem.writeFileSync( gpioName + "/value", value);	
 	};
 
-	var getGPIOs = function(callback) {
-		var gpioList = new Array();
-		var dirContents = filesystem.readdir(routeDir, function(err, files) {
-		
-			var dirName = "", 
-				i;
-			
-			for(i = 0; i < files.length ; i++) {		
-				
-				dirName = files[i];
+	
 
-				if (dirName.indexOf("gpio") != -1 && dirName != "gpiochip0") {
-					var direction = getGPIODirection(dirName);	
-					var value = getGPIOValue(dirName);
-					var id = dirName.substring(4, dirName.length);
-					var gpio = new GPIO(id, dirName, direction, value);
-					gpioList.push(gpio);		
+	this.updateZone = function(jsonObject, callback) {
+		
+		for( var index in zoneObjArray ) {
+			
+			if (zoneObjArray[index]['id'] === JSON.parse(jsonObject)['id']) {
+				
+				var zoneObject = zoneObjArray[index],
+				oldName = zoneObjArray[index]['name'],
+				oldValue = zoneObjArray[index]['value'],
+				newName = JSON.parse(jsonObject)['name'],
+				newValue = JSON.parse(jsonObject)['value'];
+				
+				for (var prop in zoneObject) {
+					if (prop != 'value') {
+						zoneObject[prop] = JSON.parse(jsonObject)[prop];
+					} else {
+						zoneObject[prop] = JSON.parse(jsonObject)[prop];
+						setGPIOValue(gpioRoot+"gpio"+zoneObject['gpioNum'], JSON.parse(jsonObject)[prop]);
+					}
+				}
+
+				if(oldName != newName) {
+					dbConnection.updateGPIOZoneName(zoneObject, callback);
+				} else {
+					callback(zoneObject);
 				}
 			}
-		
-			if(callback) {
-				callback(gpioList);
-			}
-		});	
-
-		return gpioList;
-	};
-
-	var validateRemoval = function(gpioNum) {
-
-		if (filesystem.existsSync(routeDir+"gpio"+gpioNum) == false) {
-			console.log("gpio: "+gpioNum+" unexported successfully");
-		} else {
-			console.log("unexport unsuccessfull. Attempting to unexport gpio again");
-			writeGPIO(gpioNum, this.unexportFile);
 		}
 	};
 
-	this.getGPIO = function(gpioName, callback) {
 
-		var gpios = getGPIOs(function(gpioList) {
-			var i;
-			var result;
 
-			for (i=0 ; i< gpios.length ; i++) {
-				var gpio = gpios[i];
+	this.getGPIO = function(id, callback) {
+		
+		var result;
+		
+		for( var index in zoneObjArray ) {
+			if (zoneObjArray[index]['id'] === id) {
+				result = zoneObjArray[index];
+			}
+		}
 
-				if (gpioName === gpio["name"]){
-					result = gpio;
-				}
-			} 
-
-			if(callback) {
+		if(callback) {
 				callback(result);
 			}			
-			return this;
-		});	
-	};
-
-	this.removeAllGPIOs = function() {
-		var files = filesystem.readdirSync(routeDir);
-		var dirName = "", 
-			i, 
-			gpioNum;
-
-			for(i = 0; i < files.length ; i++) {
-
-				dirName = files[i];
-
-				if (dirName.indexOf("gpio") != -1 && dirName != "gpiochip0") {	
-					console.log("about to remove gpio : "+dirName);
-					gpioNum = dirName.split("gpio")[1];		
-					writeGPIO(gpioNum, unexportFile);
-					validateRemoval(gpioNum);			
-				}
-			}
-	};
+		return result;
+	};	
+		
 
 	this.getAllGPIOs = function(callback) {
-		getGPIOs(callback);
-	};
+		callback(zoneObjArray);
+	};	
 
-	this.setGPIOVal = function(gpioName, value) {
-		setGPIOValue(gpioName, value);
-	};
 
-	this.provisionGPIOs = function(gpios) {
-		
-		for (var val in gpios) {
-			console.log("creating gpio file: gpio"+ gpios[val] );
-		
-			writeGPIO(gpios[val], exportFile, function() {
-				
-				setGPIODirection("gpio" + gpios[val], "out");
-				setGPIOValue("gpio" + gpios[val], 0);
+	this.createThermalGPIOs = function(gpioFiles) {
+		for (prop in gpioFiles) {
+			var gpioNumber = gpioFiles[prop]['pin'],
+			role = gpioFiles[prop]['role'],
+			realGPIOExists = filesystem.existsSync(gpioRoot+"gpio"+gpioNumber),
+			id = uuid.v4(),
+			direction,
+			value,
+			zone,			 
+			state = "off";
 
-			});
+			console.log("\n\nchecking if gpioFile: "+ gpioNumber +" exists: "+ realGPIOExists);
 
-			console.log("gpio"+gpios[val]+" created");
-		}
+			if (! realGPIOExists ) {
+				console.log("\nexporting GPIO "+gpioNumber);
+				writeGPIO(gpioNumber, exportFile);
+				setGPIODirection(gpioRoot+"gpio"+ gpioNumber, "out");
+				setGPIOValue(gpioRoot+"gpio"+ gpioNumber, 0);
+
+			} else {
+				console.log("\n gpio"+ gpioNumber + " is already exported");
+			}
+
+			direction = getGPIODirection(gpioRoot + "gpio" + gpioNumber);
+			value = getGPIOValue(gpioRoot +  "gpio" + gpioNumber);	
+
+			if(value != 0) {
+				state = "on"
+			}
+
+			zone = new GPIO(id, "null", direction, value, state, gpioNumber, role);
+
+			dbConnection.getZoneNameByGPIONumber(zone, function(zoneObj) {
+				zoneObjArray.push(zoneObj);
+			});						
+		}		
 	};
 }
 
 module.exports = GPIOController;
+
+
+//curl -i -X PUT -H 'Content-Type: application/json' -d '{"id": "0c55a61b-fa28-4057-989e-8e73c7ffb0fd", "name": "Test One", "direction": "out", "value": "0", "state": "off", "gpioNum": "17", "role": "master"}' http://localhost:8888/mains/0c55a61b-fa28-4057-989e-8e73c7ffb0fd
+
+

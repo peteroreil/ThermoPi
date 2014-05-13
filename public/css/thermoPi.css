@@ -11,7 +11,7 @@ ul
  .side-nav {
 	margin-left: -225px;
 	left: 225px;
-	width: 225px;
+	width: 17%;
 	position: fixed;
 	top: 76px;
 	height: 100%;
@@ -30,8 +30,8 @@ ul
 	border-color: #003366;
 }
   
-.side-nav>li>a {
-	width: 225px;
+.side-nav>li {
+	width: 100%;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -47,8 +47,8 @@ ul
 }
 
 .icons {
-	margin-right: 20px;
-	margin-left:20px;
+	margin-right: 8%;
+	margin-left: 15%;
 }
 
 .navbar-right {
@@ -84,14 +84,14 @@ ul
 
 /*Start of Page-Container*/
 .container{
-	padding-left:225px;
+	width: 100%;
+	padding-left: 18%;
 }
 
 #page-wrapper {
   margin-top:75px;
   width: 100%;
-  padding: 15px 25px;
-  
+  padding: 15px;  
 }
 
 
@@ -141,13 +141,13 @@ ul
 
 /*End of Panels*/
 
-.climate-buttons>button>i {
+.climate-buttons>i {
 	margin-right:6px;
 }
 
 /*Login Screen Margins*/
 #logo-row {
-	margin-top: 100px;
+	margin-top: 2%;
 }
 
 #login-row {
@@ -165,4 +165,8 @@ ul
 
 .login {
 	margin-left:-225px;
+}
+
+#tab-row {
+	margin-top : 10px;
 }

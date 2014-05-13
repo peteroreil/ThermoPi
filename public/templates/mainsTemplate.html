@@ -1,0 +1,20 @@
+<div class="col-xs-12">
+	<h1>Climate Control <small>temperature</small></h1>
+	<ol class="breadcrumb">
+		<% if (obj.value == 0) {%>
+		<li class="active"><i class="fa fa-globe"></i> currently powered: <span class="label label-warning">OFF</span> </li>
+	</ol>
+</div>
+<div class="col-xs-12">	
+		<button id ="button" class="btn btn-success climate-buttons"><i class="fa fa-plus"></i> Turn On Heating</button>
+</div>
+		
+		<%} else {%>
+		<li class="active"><i class="fa fa-globe"></i> currently powered: <span class="label label-success">ON</span> 
+		</li>
+	</ol>
+</div>
+<div class="col-xs-12">	
+	<button id ="button" class="btn btn-warning climate-buttons"><i class="fa fa-plus"></i> Turn Off Heating</button>
+</div>		
+<%}%>
