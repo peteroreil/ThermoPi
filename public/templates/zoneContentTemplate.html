@@ -1,0 +1,24 @@
+
+<div class="row zone-row">
+	<div class="col-xs-4">
+		<ol class="breadcrumb">
+			<li class="active zone-buttons" ><i class="fa fa-globe"></i> <%=name%> powered:
+				<% if (obj.value == 0) {%>
+					<span class="label label-warning zone-status">OFF</span>
+				<%} else {%>
+					<span class="label label-success zone-status">ON</span>
+				<%}%>
+			</li>
+		</ol>
+		<% if (obj.value == 0) {%>
+			<button class="btn btn-success zone-buttons zone"><i class="fa fa-plus"></i>Enable: <%=name%></button>
+		<%} else {%>
+			<button class="btn btn-warning zone-buttons zone"><i class="fa fa-plus"></i>Disable: <%=name%></button>
+		<%}%>
+	</div>
+	<div class="col-xs-4">
+	</div>
+	<div class="col-xs-4 settings-col">
+		<button class="btn btn-info climate-buttons" ><i class="fa fa-cogs"></i>Settings</button>
+	</div>
+</div>

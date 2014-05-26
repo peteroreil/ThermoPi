@@ -1,9 +1,8 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
-  'text!templates/mainsTemplate.html'
-], function($, _, Backbone, mainsTemplate){
+  'backbone',  
+], function($, _, Backbone){
 
 	var mainsModel = Backbone.Model.extend({
 

@@ -5,8 +5,10 @@ define([
   'views/login',
   'views/home',
   'models/mains',
-  'views/mainsView'
-  ], function($, _, Backbone, LoginView, HomeView, MainsModel, MainsView) {
+  'views/mainsView',
+  'collections/zonesCollection',
+  'views/zonesView'
+  ], function($, _, Backbone, LoginView, HomeView, MainsModel, MainsView, ZonesCollection, ZonesView) {
   
  
   var Router = Backbone.Router.extend({
@@ -32,6 +34,13 @@ define([
 
         var mainsPowerModel  = new MainsModel();
         var mainsPowerView = new MainsView({model : mainsPowerModel});
+
+        var zonesCollection = new ZonesCollection();
+        zonesCollection.fetch({success: function() {
+            var zonesView = new ZonesView({collection: zonesCollection});
+            zonesView.render();
+        }});
+        
     });
 
      Backbone.history.start();

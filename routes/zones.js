@@ -33,7 +33,6 @@ exports.getAllZones = function(request, response) {
 }
 
 exports.putZone = function(request, response) {
-	console.log("here being called");
 	var id = request.params.id;
 	var gpio = request.body;
 	var jsonStr =  JSON.stringify(gpio);	

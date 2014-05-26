@@ -10,7 +10,7 @@ define([
 		className: 'row',
 
 		events : {
-			'click .btn' : 'postState'
+			'click .btn' : 'putState'
 		},
 
 		initialize : function() {
@@ -27,11 +27,11 @@ define([
 			$('#main-power').append(this.el);
 		},
 
-		postState : function() {
+		putState : function() {
 			if (this.isPoweredOn()) {
 				this.powerOff();
 			} else {
-				this.powerOn()
+				this.powerOn();
 			}
 
 			this.model.save();

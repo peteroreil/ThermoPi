@@ -5,7 +5,7 @@ ul
 
 /*Navigation Styling*/
  .nav{
- 	height: 75px;
+ 	/*height: 75px; was 75px with the navigation menu*/
  }
 
  .side-nav {
@@ -141,8 +141,16 @@ ul
 
 /*End of Panels*/
 
-.climate-buttons>i {
+.zone-buttons>i, .climate-buttons>i {
 	margin-right:6px;
+}
+
+.zone-buttons {
+	width:100%
+}
+
+.zone-status {
+	float:right
 }
 
 /*Login Screen Margins*/
@@ -169,4 +177,13 @@ ul
 
 #tab-row {
 	margin-top : 10px;
+}
+
+
+.zone-row {
+	margin-top: 2%;
+}
+
+.settings-col {
+	text-align: right
 }
