@@ -14,7 +14,7 @@ define([
 		},
 
 		initialize: function() {
-			_.bindAll(this, 'render', 'addActiveClass', 'putState', 'isPoweredOn', 'powerOn', 'powerOff');
+			_.bindAll(this, 'render', 'addActiveClass', 'putState', 'isPoweredOn', 'powerOn', 'powerOff', 'setModelState', 'disableButton');
 			this.model.on('change', this.render, this);
 			this.template = _.template(zoneContentTemplate);
 			this.render();
@@ -34,8 +34,10 @@ define([
 		putState : function() {
 			if (this.isPoweredOn()) {
 				this.powerOff();
+				this.setModelState("off");
 			} else {
 				this.powerOn();
+				this.setModelState("on");
 			}
 			this.model.save();
 		},
@@ -50,6 +52,14 @@ define([
 
 		powerOff: function() {
 			this.model.set({'value' : '0'});
+		},
+
+		setModelState: function(state) {
+			this.model.set({'state' :state});
+		},
+
+		disableButton: function() {
+			this.$('.zone-buttons').addClass('disabled');
 		}
 	});
 

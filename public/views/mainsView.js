@@ -14,7 +14,7 @@ define([
 		},
 
 		initialize : function() {
-			_.bindAll(this, 'render');
+			_.bindAll(this, 'render', 'disableZones');
 			this.model.on('change',this.render,this);
 			this.template = _.template(mainsTemplate);	
 			this.model.fetch();			
@@ -30,24 +30,46 @@ define([
 		putState : function() {
 			if (this.isPoweredOn()) {
 				this.powerOff();
+				this.disableZones();
 			} else {
 				this.powerOn();
+				this.enableZones();
 			}
-
+			
 			this.model.save();
 		},
 
 		powerOn: function() {
-			this.model.set({'value' : '1'});
+			this.model.set({'value' : '1', 'state': 'on'});
 		},
 
 		powerOff: function() {
-			this.model.set({'value' : '0'});
+			this.model.set({'value' : '0', 'state': 'off'});
 		},
 
 		isPoweredOn : function() {
 			return this.model.get('value') == 1
+		},
+
+		disableZones : function() {
+			_.each(this.collection.models, function(model){
+				console.log(model.get('value'));
+				model.set({'value' : '0'});
+				model.save();
+			}, this);
+			$('.zone-buttons').addClass('disabled');			
+		},
+
+		enableZones : function() {
+			$('.zone-buttons').removeClass('disabled');
+
+			_.each(this.collection.models, function(model){
+				console.log(model.get('value'));
+				model.set({'value' : '0', 'state' : 'off'});
+				model.save();
+			}, this);			
 		}
+
 	});
 
 	return mainsView;

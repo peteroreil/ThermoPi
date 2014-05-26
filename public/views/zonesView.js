@@ -23,6 +23,10 @@ define([
 				var tabView = new ZoneTabView({model: zoneModel});				
 				var contentView = new ZoneContentView({model: zoneModel});
 
+				if (this.model.get('value') == 0) {
+					contentView.disableButton();
+				}
+
 				if (index == 0) {
 					tabView.addActiveClass();
 					contentView.addActiveClass();

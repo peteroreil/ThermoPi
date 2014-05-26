@@ -2,7 +2,7 @@
 	<h1>Climate Control <small>temperature</small></h1>
 	<ol class="breadcrumb">
 		<% if (obj.value == 0) {%>
-		<li class="active climate-buttons"><i class="fa fa-fire"></i> heating system currently powered: <span class="label label-warning">OFF</span> </li>
+		<li class="active climate-buttons"><i class="fa fa-fire"></i> heating system currently powered: <span class="label label-danger">OFF</span> </li>
 	</ol>
 </div>
 <div class="col-xs-12">	
@@ -15,6 +15,6 @@
 	</ol>
 </div>
 <div class="col-xs-12">	
-	<button id ="button" class="btn btn-warning climate-buttons"><i class="fa fa-plus"></i> Turn Off Heating</button>
+	<button id ="button" class="btn btn-danger climate-buttons"><i class="fa fa-plus"></i> Turn Off Heating</button>
 </div>		
 <%}%>

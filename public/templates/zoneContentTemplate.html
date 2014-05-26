@@ -1,10 +1,18 @@
 
 <div class="row zone-row">
+	<div class="col-xs-12">
+		<% if ((obj.value == 0) && (obj.state === 'on')){%>
+		<div class="alert alert-info fade in">
+      		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+     		 <strong>Warning!</strong> Main power is OFF.  <%=name%> is currently disabled. Please turn on mains.
+    	</div>
+    	<%}%>
+	</div>	
 	<div class="col-xs-4">
 		<ol class="breadcrumb">
 			<li class="active zone-buttons" ><i class="fa fa-globe"></i> <%=name%> powered:
 				<% if (obj.value == 0) {%>
-					<span class="label label-warning zone-status">OFF</span>
+					<span class="label label-danger zone-status">OFF</span>
 				<%} else {%>
 					<span class="label label-success zone-status">ON</span>
 				<%}%>
@@ -13,7 +21,7 @@
 		<% if (obj.value == 0) {%>
 			<button class="btn btn-success zone-buttons zone"><i class="fa fa-plus"></i>Enable: <%=name%></button>
 		<%} else {%>
-			<button class="btn btn-warning zone-buttons zone"><i class="fa fa-plus"></i>Disable: <%=name%></button>
+			<button class="btn btn-primary zone-buttons zone"><i class="fa fa-plus"></i>Disable: <%=name%></button>
 		<%}%>
 	</div>
 	<div class="col-xs-4">
