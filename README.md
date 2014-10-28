@@ -8,7 +8,7 @@ controlling a home heating system.
 Installation Instructions
 =========================
 
-!! Requires mysql server to also be installed on the Pi !!
+*Requires mysql server to also be installed on the Pi*
 
 
 Once mysql is installed create a database (use same name as sql dump below) for your ThermoPi application.
