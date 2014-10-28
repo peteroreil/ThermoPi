@@ -21,9 +21,10 @@ Once verified that DB is up and running and database is accessible,
 Install Node.js for your OS. (Current installed Version on rpi http://nodejs.org/dist/v0.10.24/node-v0.10.24-linux-arm-pi.tar.gz) 
 
 Clone this repo.
-Navigate to the ThermoPi dir and install required packages ----> npm install
-start the http server.js -----> node server.js
 
+Navigate to the ThermoPi dir and install required packages ----> npm install
+
+start the http server.js -----> node server.js
 
 
 
