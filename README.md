@@ -11,7 +11,7 @@ Installation Instructions
 *Requires mysql server to also be installed on the Pi*
 
 
-# Install mysql on Pi
+Install mysql on Pi
 Once mysql is installed create a database (use same name as sql dump below) for your ThermoPi application.
 
 In the config.js verify (or add) the name of the database / username / password and port.
