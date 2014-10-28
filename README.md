@@ -11,12 +11,13 @@ Installation Instructions
 !! Requires mysql server to also be installed on the Pi !!
 
 
-Once mysql is installed create a database (or use same name as sql dump below) for your ThermoPi application
-In the config.js add the name of the database / username / password and port.
+Once mysql is installed create a database (use same name as sql dump below) for your ThermoPi application.
 
-Insert the ThermoPi.sql dump file into database
-Once verified that DB is up and running and database is accessible
+In the config.js verify (or add) the name of the database / username / password and port.
 
+Insert the ThermoPi.sql dump file into database.
+
+Once verified that DB is up and running and database is accessible,
 Install Node.js for your OS. (Current installed Version on rpi http://nodejs.org/dist/v0.10.24/node-v0.10.24-linux-arm-pi.tar.gz) 
 
 Clone this repo.
